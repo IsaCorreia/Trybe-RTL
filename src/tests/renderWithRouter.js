@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { Router } from 'react-router';
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
   const page = render(
-    <BrowserRouter history={ history }>
+    <Router history={ history }>
       {component}
-    </BrowserRouter>,
+    </Router>,
   );
 
   return { history, ...page };

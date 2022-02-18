@@ -53,20 +53,11 @@ describe('Teste o componente <App.js />', () => {
 
   test.skip(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados,
   na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {
-    const { history } = renderWithRouter(<App />);
-    const { pathname } = history.location;
-    const favPkmnLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
 
-    userEvent.click(favPkmnLink);
-    expect(pathname).toBe('/favorites');
   });
 
   test.skip(`Teste se a aplicação é redirecionada para a página
   Not Found ao entrar em uma URL desconhecida.`, () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/404');
 
-    const notFoundText = screen.getByText(/Page requested not found/i);
-    expect(notFoundText).toBeInTheDocument();
   });
 });
