@@ -51,9 +51,20 @@ describe('Teste o componente <App.js />', () => {
     expect(aboutTitleEl).toBeInTheDocument();
   });
 
-  test.skip(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados,
+  test(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados,
   na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {
+    const { history } = renderWithRouter(<App />);
 
+    const favPkmnLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    expect(favPkmnLink).toBeInTheDocument();
+
+    userEvent.click(favPkmnLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+
+    const favPkmnTitleEl = screen.getByRole('heading', { name: /Favorite pokémons/i });
+    expect(favPkmnTitleEl).toBeInTheDocument();
   });
 
   test.skip(`Teste se a aplicação é redirecionada para a página
