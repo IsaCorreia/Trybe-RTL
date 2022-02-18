@@ -31,7 +31,9 @@ describe('Teste o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/');
 
-    const homeTitleEl = screen.getByRole('heading', { name: /Encountered pokémons/i });
+    const homeTitleEl = screen.getByRole('heading', {
+      name: /Encountered pokémons/i,
+    });
     expect(homeTitleEl).toBeInTheDocument();
   });
 
@@ -47,7 +49,9 @@ describe('Teste o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
 
-    const aboutTitleEl = screen.getByRole('heading', { name: /About Pokédex/i });
+    const aboutTitleEl = screen.getByRole('heading', {
+      name: /About Pokédex/i,
+    });
     expect(aboutTitleEl).toBeInTheDocument();
   });
 
@@ -63,12 +67,19 @@ describe('Teste o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
 
-    const favPkmnTitleEl = screen.getByRole('heading', { name: /Favorite pokémons/i });
+    const favPkmnTitleEl = screen.getByRole('heading', {
+      name: /Favorite pokémons/i,
+    });
     expect(favPkmnTitleEl).toBeInTheDocument();
   });
 
-  test.skip(`Teste se a aplicação é redirecionada para a página
+  test(`Teste se a aplicação é redirecionada para a página
   Not Found ao entrar em uma URL desconhecida.`, () => {
-
+    const { history } = renderWithRouter(<App />);
+    history.push('404');
+    const noMatchPage = screen.getByRole('heading', {
+      name: /Page requested not found/i,
+    });
+    expect(noMatchPage).toBeInTheDocument();
   });
 });
